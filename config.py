@@ -19,7 +19,7 @@ import argparse, json, util, traceback
 
 parser = argparse.ArgumentParser()
 parser.add_argument("config")
-# parser.add_argument("root_gpu", type=int)
+parser.add_argument("root_gpu", type=int)
 parser.add_argument("--resume", action="store_true")
 args = parser.parse_args()
 
@@ -33,6 +33,6 @@ cstr = str(config)
 
 def log_config():
   HPS_PATH = util.create_directory("output/" + config["env"]["name"] + "/" + config["name"] + "/" + config["log_path"]) + "/hps.json"
-  # print("ROOT GPU: " + str(args.root_gpu) + "\n" + str(cstr))
-  # with open(HPS_PATH, "w") as f:
-  #   f.write("ROOT GPU: " + str(args.root_gpu) + "\n" + str(cstr))
+  print("ROOT GPU: " + str(args.root_gpu) + "\n" + str(cstr))
+  with open(HPS_PATH, "w") as f:
+    f.write("ROOT GPU: " + str(args.root_gpu) + "\n" + str(cstr))
