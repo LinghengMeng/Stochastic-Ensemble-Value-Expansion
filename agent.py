@@ -126,6 +126,7 @@ def main(proc_num, evaluation, policy_replay_frame_queue, model_replay_frame_que
     frame_i = 0
     while True:
       new_frames = agentmanager.step()
+      print('frame_i:{}'.format(frame_i))
       if not evaluation:
         policy_replay_frame_queue.put(new_frames)
         if model_replay_frame_queue is not None: model_replay_frame_queue.put(new_frames)
