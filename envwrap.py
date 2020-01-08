@@ -19,6 +19,7 @@ try:
 except:
   pass
 import gym
+import pybulletgym
 import numpy as np
 
 from config import config
