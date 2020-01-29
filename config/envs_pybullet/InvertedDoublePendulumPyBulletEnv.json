@@ -1,9 +1,9 @@
 {
   "updates": {
     "env": {
-      "name": "HalfCheetahPyBulletEnv-v0",
-      "obs_dims": [17],
-      "action_dim": 6,
+      "name": "InvertedDoublePendulumPyBulletEnv-v0",
+      "obs_dims": [9],
+      "action_dim": 1,
       "reward_scale":1.0,
       "discount":0.99,
       "max_frames": 1000

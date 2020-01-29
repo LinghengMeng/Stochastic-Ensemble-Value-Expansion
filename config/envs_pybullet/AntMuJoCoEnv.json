@@ -1,0 +1,12 @@
+{
+  "updates": {
+    "env": {
+      "name": "AntMuJoCoEnv-v0",
+      "obs_dims": [111],
+      "action_dim": 8,
+      "reward_scale":1.0,
+      "discount":0.99,
+      "max_frames": 1000
+    }
+  }
+}
