@@ -1,1 +1,1 @@
-{"inherits": ["config/algos/steve.json", "config/envs_pybullet/AntPyBulletEnv.json.json"]}
+{"inherits": ["config/algos/steve.json", "config/envs_pybullet/AntPyBulletEnv.json"]}
