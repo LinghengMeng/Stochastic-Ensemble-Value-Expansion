@@ -37,20 +37,26 @@ class ValueRL(CoreModel):
     self.reward_scale = env_config["reward_scale"]
     self.discount = env_config["discount"]
 
+    self.hidden_layer = learner_config["hidden_layer"]
     self.hidden_dim = learner_config["hidden_dim"]
     self.bayesian_config = learner_config["bayesian"]
     self.value_expansion = learner_config["value_expansion"]
     self.explore_chance = learner_config["ddpg_explore_chance"]
 
     with tf.variable_scope(self.name):
-      self.policy = nn.FeedForwardNet('policy', self.obs_dim, [self.action_dim], layers=4, hidden_dim=self.hidden_dim, get_uncertainty=False)
+      self.policy = nn.FeedForwardNet('policy', self.obs_dim, [self.action_dim],
+                                      layers=self.hidden_layer, hidden_dim=self.hidden_dim, get_uncertainty=False)
 
       if self.bayesian_config:
-        self.Q = nn.EnsembleFeedForwardNet('Q', self.obs_dim + self.action_dim, [], layers=4, hidden_dim=self.hidden_dim, get_uncertainty=True, ensemble_size=self.bayesian_config["ensemble_size"], train_sample_count=self.bayesian_config["train_sample_count"], eval_sample_count=self.bayesian_config["eval_sample_count"])
-        self.old_Q = nn.EnsembleFeedForwardNet('old_q', self.obs_dim + self.action_dim, [], layers=4, hidden_dim=self.hidden_dim, get_uncertainty=True, ensemble_size=self.bayesian_config["ensemble_size"], train_sample_count=self.bayesian_config["train_sample_count"], eval_sample_count=self.bayesian_config["eval_sample_count"])
+        self.Q = nn.EnsembleFeedForwardNet('Q', self.obs_dim + self.action_dim, [],
+                                           layers=self.hidden_layer, hidden_dim=self.hidden_dim, get_uncertainty=True, ensemble_size=self.bayesian_config["ensemble_size"], train_sample_count=self.bayesian_config["train_sample_count"], eval_sample_count=self.bayesian_config["eval_sample_count"])
+        self.old_Q = nn.EnsembleFeedForwardNet('old_q', self.obs_dim + self.action_dim, [],
+                                               layers=self.hidden_layer, hidden_dim=self.hidden_dim, get_uncertainty=True, ensemble_size=self.bayesian_config["ensemble_size"], train_sample_count=self.bayesian_config["train_sample_count"], eval_sample_count=self.bayesian_config["eval_sample_count"])
       else:
-        self.Q = nn.FeedForwardNet('Q', self.obs_dim + self.action_dim, [], layers=4, hidden_dim=self.hidden_dim, get_uncertainty=True)
-        self.old_Q = nn.FeedForwardNet('old_q', self.obs_dim + self.action_dim, [], layers=4, hidden_dim=self.hidden_dim, get_uncertainty=True)
+        self.Q = nn.FeedForwardNet('Q', self.obs_dim + self.action_dim, [],
+                                   layers=self.hidden_layer, hidden_dim=self.hidden_dim, get_uncertainty=True)
+        self.old_Q = nn.FeedForwardNet('old_q', self.obs_dim + self.action_dim, [],
+                                       layers=self.hidden_layer, hidden_dim=self.hidden_dim, get_uncertainty=True)
 
     self.policy_params = [v for v in tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=self.name) if "policy" in v.name]
     self.Q_params = [v for v in tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=self.name) if "Q" in v.name]
