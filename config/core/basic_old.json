@@ -18,8 +18,8 @@
 
     "policy_config": {
       "algo": "ddpg",
-      "hidden_layer": 2,
-      "hidden_dim": 300,
+      "hidden_layer": 4,
+      "hidden_dim": 128,
       "explore_chance": 0.05,
       "batch_size": 100,
       "replay_size": 1000000,
