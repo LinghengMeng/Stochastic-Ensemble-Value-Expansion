@@ -32,19 +32,12 @@ MODEL_AUGMENTED = config["model_config"] is not False
 
 formatted_time = time.strftime("%Y-%m-%d-%H-%M")
 
-# if config["resume"]:
-#   ROOT_PATH = "{}_output/".format(config["resume_date"]) + config["env"]["name"] + "/" + config["name"]
-#   log_config(config["resume_date"])
-# else:
-#   ROOT_PATH = util.create_and_wipe_directory("{}_output/".format(formatted_time) + config["env"]["name"] + "/" + config["name"])
-#   log_config(formatted_time)
-
 if config["resume"]:
-  ROOT_PATH = "output/" + config["env"]["name"] + "/" + config["name"]
+  ROOT_PATH = "{}_output/".format(config["resume_date"]) + config["env"]["name"] + "/" + config["name"]
+  log_config(config["resume_date"])
 else:
-  ROOT_PATH = util.create_and_wipe_directory("output/" + config["env"]["name"] + "/" + config["name"])
-
-log_config()
+  ROOT_PATH = util.create_and_wipe_directory("{}_output/".format(formatted_time) + config["env"]["name"] + "/" + config["name"])
+  log_config(formatted_time)
 
 if MODEL_AUGMENTED: import worldmodel_learner
 

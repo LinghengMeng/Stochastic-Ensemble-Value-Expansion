@@ -33,9 +33,10 @@ config["resume"] = args.resume
 
 cstr = str(config)
 
-def log_config():
-  # HPS_PATH = util.create_directory("{}_output/".format(formatted_time) + config["env"]["name"] + "/" + config["name"] + "/" + config["log_path"]) + "/hps.json"
-  HPS_PATH = util.create_directory("output/" + config["env"]["name"] + "/" + config["name"] + "/" + config["log_path"]) + "/hps.json"
+def log_config(formatted_time):
+  HPS_PATH = util.create_directory("{}_output/".format(formatted_time) + config["env"]["name"] + "/" + config["name"] + "/" + config["log_path"]) + "/hps.json"
+  config["output_root"] = "{}_output".format(formatted_time)
+
   print("ROOT GPU: " + str(args.root_gpu) + "\n" + str(cstr))
   with open(HPS_PATH, "w") as f:
     f.write("ROOT GPU: " + str(args.root_gpu) + "\n" + str(cstr))

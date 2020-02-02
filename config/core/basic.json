@@ -1,6 +1,5 @@
 {
   "updates": {
-    "output_root": "output",
     "save_model_path": "checkpoints",
     "log_path": "log",
 
