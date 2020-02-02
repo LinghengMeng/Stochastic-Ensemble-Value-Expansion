@@ -31,9 +31,9 @@ EVALUATOR_COUNT = config["evaluator_config"]["count"]
 MODEL_AUGMENTED = config["model_config"] is not False
 
 if config["resume"]:
-  ROOT_PATH = "output/" + config["env"]["name"] + "/" + config["name"]
+  ROOT_PATH = "{}_output/".format(config["resume_date"]) + config["env"]["name"] + "/" + config["name"]
 else:
-  ROOT_PATH = util.create_and_wipe_directory("output/" + config["env"]["name"] + "/" + config["name"])
+  ROOT_PATH = util.create_and_wipe_directory("{}_output/".format(time.strftime("%Y-%m-%d")) + config["env"]["name"] + "/" + config["name"])
 log_config()
 
 if MODEL_AUGMENTED: import worldmodel_learner

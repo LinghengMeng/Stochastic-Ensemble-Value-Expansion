@@ -21,6 +21,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("config")
 parser.add_argument("root_gpu", type=int)
 parser.add_argument("--resume", action="store_true")
+parser.add_argument("--resume_date", type=str, default="2020-02-02")
 args = parser.parse_args()
 
 config_loc = args.config
