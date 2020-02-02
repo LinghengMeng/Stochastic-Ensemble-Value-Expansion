@@ -1,1 +1,3 @@
-{"inherits": ["config/algos/steve.json", "config/envs_pybullet/Walker2DPyBulletEnv.json"]}
+{"inherits": ["config/algos/steve.json", "config/envs_pybullet/Walker2DPyBulletEnv.json"],
+  "updates": {"seed": 0}
+}

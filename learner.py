@@ -44,6 +44,9 @@ class Learner(object):
         self._reset_inspections()
         self.total_frames = 0
 
+        np.random.seed(self.config["seed"])
+        tf.set_random_seed(self.config["seed"])
+
         self.save_path = util.create_directory("%s/%s/%s/%s" % (self.config["output_root"], self.config["env"]["name"], self.config["name"], self.config["save_model_path"]))
         self.log_path = util.create_directory("%s/%s/%s/%s" % (self.config["output_root"], self.config["env"]["name"], self.config["name"],  self.config["log_path"])) + "/%s.log" % self.learner_name
 

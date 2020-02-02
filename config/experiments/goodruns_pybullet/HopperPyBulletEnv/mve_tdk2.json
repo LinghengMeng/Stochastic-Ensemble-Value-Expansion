@@ -1,1 +1,3 @@
-{"inherits": ["config/algos/mve_tdk.json", "config/envs_pybullet/HopperPyBulletEnv.json"]}
+{"inherits": ["config/algos/mve_tdk.json", "config/envs_pybullet/HopperPyBulletEnv.json"],
+  "updates": {"seed": 2}
+}

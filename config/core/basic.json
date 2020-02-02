@@ -1,5 +1,6 @@
 {
   "updates": {
+    "seed": 0,
     "save_model_path": "checkpoints",
     "log_path": "log",
 

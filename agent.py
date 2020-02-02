@@ -46,6 +46,9 @@ class AgentManager(object):
     self.batch_size = batch_size
     self.config = config
 
+    np.random.seed(self.config["seed"])
+    tf.set_random_seed(self.config["seed"])
+
     self.log_path =  util.create_directory("%s/%s/%s/%s" % (config["output_root"], config["env"]["name"], config["name"], config["log_path"])) + "/%s" % config["name"]
     self.load_path = util.create_directory("%s/%s/%s/%s" % (config["output_root"], config["env"]["name"], config["name"], config["save_model_path"]))
 
@@ -121,7 +124,7 @@ class AgentManager(object):
 
 def main(proc_num, evaluation, policy_replay_frame_queue, model_replay_frame_queue, policy_lock, config):
   try:
-    np.random.seed((proc_num * int(time.time())) % (2 ** 32 - 1))
+    # np.random.seed((proc_num * int(time.time())) % (2 ** 32 - 1))
     agentmanager = AgentManager(proc_num, evaluation, policy_lock, config["evaluator_config"]["batch_size"] if evaluation else config["agent_config"]["batch_size"], config)
     frame_i = 0
     while True:
