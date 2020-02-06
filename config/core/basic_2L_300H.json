@@ -1,6 +1,6 @@
 {
   "updates": {
-    "output_root": "output",
+    "seed": 0,
     "save_model_path": "checkpoints",
     "log_path": "log",
 
@@ -18,8 +18,8 @@
 
     "policy_config": {
       "algo": "ddpg",
-      "hidden_layer": 4,
-      "hidden_dim": 128,
+      "hidden_layer": 2,
+      "hidden_dim": 300,
       "explore_chance": 0.05,
       "batch_size": 100,
       "replay_size": 1000000,
